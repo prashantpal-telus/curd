@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Task Manager</h1>
+        <div class="notification" id="notification"></div>
+        <form id="item-form">
+            <div class="form-group">
+                <input type="text" id="title-input" placeholder="Enter task title" required>
+            </div>
+            <div class="form-group">
+                <textarea id="description-input" placeholder="Enter task description (optional)"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="text" id="category-input" placeholder="Enter categories (comma-separated)">
+            </div>
+            <div class="form-group">
+                <input type="date" id="due-date-input">
+            </div>
+            <button type="submit" class="add-btn">Add Task</button>
+        </form>
+        <div class="search-sort">
+            <input type="text" id="search-input" placeholder="Search tasks">
+            <select id="sort-select">
+                <option value="createdAt">Sort by Created Date</option>
+                <option value="dueDate">Sort by Due Date</option>
+                <option value="title">Sort by Title</option>
+            </select>
+            <select id="sort-order">
+                <option value="desc">Descending</option>
+                <option value="asc">Ascending</option>
+            </select>
+        </div>
+        <div class="filters">
+            <button id="all-filter" class="filter-btn active">All</button>
+            <button id="active-filter" class="filter-btn">Active</button>
+            <button id="completed-filter" class="filter-btn">Completed</button>
+        </div>
+        <div id="category-filters"></div>
+        <div class="bulk-actions">
+            <button id="bulk-delete" class="bulk-btn">Delete Selected</button>
+            <button id="bulk-complete" class="bulk-btn">Complete Selected</button>
+        </div>
+        <div id="item-list"></div>
+        <div class="pagination">
+            <button id="prev-page" class="page-btn">Previous</button>
+            <span id="page-info"></span>
+            <button id="next-page" class="page-btn">Next</button>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
