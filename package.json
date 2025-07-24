@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "jest"
+    "test": "jest",
+    "commit": "node commit-message-generator/index.js --auto-commit",
+    "commit-and-push": "npm run commit && git push"
   },
   "keywords": [],
   "author": "",
