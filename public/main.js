@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = document.querySelectorAll('.filter-btn');
     
     // Bulk action buttons
-    const bulkDelete = document.getElementById('bulk-delete');
     const bulkComplete = document.getElementById('bulk-complete');
+    const bulkDelete = document.getElementById('bulk-delete');
     
     // Pagination elements
     const prevPage = document.getElementById('prev-page');
