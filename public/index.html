@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Task Manager</h1>
+        <div class="notification" id="notification"></div>
+        <form id="item-form">
+            <div class="form-group">
+                <input type="text" id="title-input" placeholder="Enter task title" required>
+            </div>
+            <div class="form-group">
+                <textarea id="description-input" placeholder="Enter task description (optional)"></textarea>
+            </div>
+            <button type="submit" class="add-btn">Add Task</button>
+        </form>
+        <div class="filters">
+            <button id="all-filter" class="filter-btn active">All</button>
+            <button id="active-filter" class="filter-btn">Active</button>
+            <button id="completed-filter" class="filter-btn">Completed</button>
+        </div>
+        <div id="item-list"></div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
