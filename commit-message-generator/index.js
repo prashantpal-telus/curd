@@ -4,23 +4,20 @@
  * AI Commit Message Generator
  * 
  * This CLI tool generates conventional commit messages by analyzing git diffs
- * using the OpenAI API. It supports automatic commit generation and follows
+ * using the Fuelix API. It supports automatic commit generation and follows
  * the conventional commits specification.
  */
 
 require('dotenv').config({ path: __dirname + '/.env' });
 const { program } = require('commander');
 const simpleGit = require('simple-git');
-const { OpenAI } = require('openai');
+const axios = require('axios');
 const git = simpleGit();
 
-// Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-});
+const FUELIX_MODEL = process.env.FUELIX_MODEL || 'fuelix-default-model'; // Placeholder model name
 
 /**
- * Generates a commit message using the OpenAI API
+ * Generates a commit message using the Fuelix API
  * 
  * @param {string} diff - The git diff to analyze
  * @returns {Promise<string>} The generated commit message
@@ -28,8 +25,7 @@ const openai = new OpenAI({
  */
 async function generateCommitMessage(diff) {
   try {
-    const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
+    const response = await axios.post('https://api-beta.fuelix.ai/v1/chat/completions', {
       messages: [
         {
           role: "system",
@@ -40,14 +36,18 @@ async function generateCommitMessage(diff) {
           content: `Generate a conventional commit message for this git diff:\n\n${diff}`
         }
       ],
-      max_tokens: 100,
-      temperature: 0.7
+      model: FUELIX_MODEL
+    }, {
+      headers: {
+        'Authorization': `Bearer ${process.env.FUELIX_API_KEY}`,
+        'Content-Type': 'application/json'
+      }
     });
 
-    if (response.choices && response.choices.length > 0) {
-      return response.choices[0].message.content.trim();
+    if (response.data.choices && response.data.choices.length > 0) {
+      return response.data.choices[0].message.content.trim();
     } else {
-      throw new Error('Unexpected response structure from OpenAI');
+      throw new Error('Unexpected response structure from Fuelix API');
     }
   } catch (error) {
     console.error('Error generating commit message:', error.message);
