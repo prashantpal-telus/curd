@@ -1,13 +1,13 @@
 # AI Commit Message Generator
 
-A CLI tool that generates conventional commit messages using OpenAI's GPT-3.5 model by analyzing your git diffs.
+A CLI tool that generates conventional commit messages using Fuelix API's Claude model by analyzing your git diffs.
 
 ## Features
 
 - Generates semantic commit messages following conventional commit format
 - Analyzes staged changes using git diff
 - Supports automatic commit with generated message
-- Uses OpenAI's GPT-3.5 model for intelligent message generation
+- Uses Fuelix API's Claude model for intelligent message generation
 
 ## Installation
 
@@ -16,9 +16,10 @@ A CLI tool that generates conventional commit messages using OpenAI's GPT-3.5 mo
 ```bash
 npm install
 ```
-3. Create a `.env` file with your OpenAI API key:
+3. Create a `.env` file with your Fuelix API key and model name:
 ```bash
-OPENAI_API_KEY=your_openai_api_key_here
+FUELIX_API_KEY=your_fuelix_api_key_here
+FUELIX_MODEL=claude-3-5-sonnet
 ```
 
 ## Usage
@@ -69,4 +70,4 @@ npm run commit
 
 - Node.js >= 18
 - Git
-- OpenAI API key
+- Fuelix API key
